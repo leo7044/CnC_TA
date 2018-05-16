@@ -1,1 +1,1 @@
-Script von C&C: TA
+Scripts for C&C: TA
