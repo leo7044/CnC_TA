@@ -1,1 +1,1 @@
-# CnC_TA
+Script von C&C: TA
