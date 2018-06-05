@@ -1,10 +1,12 @@
 // ==UserScript==
 // @name        PTE_CheatScript
-// @version     2018.05.16
-// @author      leo7044
+// @version     2018.06.05
 // @description PTE_CheatScript
+// @downloadURL https://raw.githubusercontent.com/leo7044/CnC_TA/master/PTE_CheatScript.user.js
+// @updateURL   https://raw.githubusercontent.com/leo7044/CnC_TA/master/PTE_CheatScript.user.js
 // @include     http*://prodgame*.alliances.commandandconquer.com/320/index.aspx*
-// @updateURL   https://github.com/leo7044/CnC_TA/raw/master/PTE_CheatScript.user.js
+// @include     http*://cncapp*.alliances.commandandconquer.com/320/index.aspx*
+// @author      leo7044 (https://github.com/leo7044)
 // @grant       none
 // ==/UserScript==
 

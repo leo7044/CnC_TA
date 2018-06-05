@@ -1,11 +1,13 @@
 // ==UserScript==
-// @version	    2017.06.22
+// @version	    2018.06.05
 // @name        C&C:TA CNCOpt Link Button (enemies offense)
 // @namespace   http://cncopt.com/
 // @icon        http://cncopt.com/favicon.ico
 // @description Creates a "CNCOpt" button when selecting a base in Command & Conquer: Tiberium Alliances. The share button takes you to http://cncopt.com/ and fills in the selected base information so you can analyze or share the base.
-// @downloadURL https://raw.githubusercontent.com/leo7044/cnctascripts/master/CnCOpt.user.js
+// @downloadURL https://raw.githubusercontent.com/leo7044/CnC_TA/master/CnC-Opt.user.js
+// @updateURL   https://raw.githubusercontent.com/leo7044/CnC_TA/master/CnC-Opt.user.js
 // @include     http*://prodgame*.alliances.commandandconquer.com/*/index.aspx*
+// @include     http*://cncapp*.alliances.commandandconquer.com/*/index.aspx*
 // @include	    http*://*.cncopt.com/*
 // @include	    http*://cncopt.com/*
 // @grant       GM_log
@@ -21,6 +23,7 @@
 // ==/UserScript==
 /*
 
+2018-06-05: leo7044 fixed it for new server-links
 2016-08-21: leo7044 fixed it for bases level 50+
 2016-05-17: leo7044 fixed it for Infected
 2013-03-03: Special thanks to jerbri for fixing this up so it worked again!
