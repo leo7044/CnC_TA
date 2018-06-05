@@ -2,7 +2,7 @@
 // @name        MaelstromTools Dev
 // @namespace   MaelstromTools
 // @description Just a set of statistics & summaries about repair time and base resources. Mainly for internal use, but you are free to test and comment it.
-// @version     0.1.4.6
+// @version     0.1.4.6.1
 // @author      Maelstrom, HuffyLuf, KRS_L and Krisan
 // @contributor leo7044 (https://github.com/leo7044)
 // @downloadURL https://raw.githubusercontent.com/leo7044/CnC_TA/master/MaelstromTools_Dev.user.js
