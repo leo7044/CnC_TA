@@ -4,9 +4,9 @@
 // @description Removes name and level information except for interesting raidtargets. You can now toggle the display. By editing lowerRange and upperRange you can modify the range of visible targets.
 // @downloadURL https://raw.githubusercontent.com/leo7044/CnC_TA/master/New_Raidhelper.user.js
 // @updateURL   https://raw.githubusercontent.com/leo7044/CnC_TA/master/New_Raidhelper.user.js
-// @include     http*://prodgame*.alliances.commandandconquer.com/320/index.aspx*
-// @include     http*://cncapp*.alliances.commandandconquer.com/320/index.aspx*
-// @version     0.2.1
+// @include     http*://prodgame*.alliances.commandandconquer.com/*/index.aspx*
+// @include     http*://cncapp*.alliances.commandandconquer.com/*/index.aspx*
+// @version     0.2.2
 // @author      alexos75
 // @contributor leo7044 (https://github.com/leo7044)
 // @grant          none
@@ -16,7 +16,7 @@ function initHideCampsButton(){
     
 	// section for settings ->
 	var lowerRange = 2;
-        var upperRange = 99;
+    var upperRange = 99;
 	var hideColleaquesInfos = true;
 	var hidePoiInfos = true;
 	// <- section for settings
@@ -105,10 +105,6 @@ function initHideCampsButton(){
 }
 /*Main*/
 function waitForClientLib(){
-    
-    qx = unsafeWindow["qx"];
-    ClientLib = unsafeWindow["ClientLib"];
-    webfrontend = unsafeWindow["webfrontend"];
 	
     if ((typeof ClientLib == 'undefined') || (typeof qx == 'undefined') || (qx.core.Init.getApplication().initDone == false))
     {
