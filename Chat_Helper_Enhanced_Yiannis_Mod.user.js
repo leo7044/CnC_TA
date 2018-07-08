@@ -3,8 +3,8 @@
 // @description Automates the use of chat and message BB-Codes: [coords][url][player][alliance][b][i][s][u] - Contact list for whispering - Type /chelp <enter> in chat for help.
 // @downloadURL https://github.com/leo7044/CnC_TA/raw/master/Chat_Helper_Enhanced_Yiannis_Mod.user.js
 // @updateURL   https://github.com/leo7044/CnC_TA/raw/master/Chat_Helper_Enhanced_Yiannis_Mod.user.js
-// @include     http*://prodgame*.alliances.commandandconquer.com/320/index.aspx*
-// @include     http*://cncapp*.alliances.commandandconquer.com/320/index.aspx*
+// @include     http*://prodgame*.alliances.commandandconquer.com/*/index.aspx*
+// @include     http*://cncapp*.alliances.commandandconquer.com/*/index.aspx*
 // @contributor leo7044 (https://github.com/leo7044)
 // @version     3.2.1.1
 // @icon        https://sites.google.com/site/titlemod/home/favicon.png
