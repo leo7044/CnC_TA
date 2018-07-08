@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        PTE_CheatScript
 // @version     2018.06.25
-// @author      leo7044
+// @author      leo7044 (https://github.com/leo7044)
 // @description PTE_CheatScript
 // @downloadURL https://github.com/leo7044/CnC_TA/raw/master/PTE_CheatScript.user.js
 // @updateURL   https://github.com/leo7044/CnC_TA/raw/master/PTE_CheatScript.user.js
