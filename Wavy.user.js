@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Tiberium Alliances Wavy
-// @version        0.5.4,1
+// @version        0.5.4.2
 // @namespace      https://openuserjs.org/users/petui
 // @license        GPL version 3 or any later version; http://www.gnu.org/copyleft/gpl.html
 // @author         petui
@@ -112,9 +112,10 @@
 
 						if (typeof webfrontend.gui.region.RegionCityInfo.prototype.getObject !== 'function') {
 							source = webfrontend.gui.region.RegionCityInfo.prototype.setObject.toString();
-							var objectMemberName = PerforceChangelist >= 448942 && PerforceChangelist < 451851
+                            /*var objectMemberName = PerforceChangelist >= 448942 && PerforceChangelist < 451851
 								? source.match(/^function \(([A-Za-z]+)\)\{.+([A-Za-z]+)=\1\.object;[\s\S]+this\.([A-Za-z_]+)=\2;/)[3]
-								: source.match(/^function \(([A-Za-z]+)(?:,[A-Za-z]+)?\)\{.+this\.([A-Za-z_]+)=\1;/)[2];
+								: source.match(/^function \(([A-Za-z]+)(?:,[A-Za-z]+)?\)\{.+this\.([A-Za-z_]+)=\1;/)[2];*/
+							var objectMemberName = source;
 
 							/**
 							 * @returns {ClientLib.Vis.Region.RegionObject}
