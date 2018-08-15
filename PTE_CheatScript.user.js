@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        PTE_CheatScript
-// @version     2018.06.25
-// @author      leo7044 (https://github.com/leo7044)
+// @version     2018.08.15
+// @author      leo7044
 // @description PTE_CheatScript
 // @downloadURL https://github.com/leo7044/CnC_TA/raw/master/PTE_CheatScript.user.js
 // @updateURL   https://github.com/leo7044/CnC_TA/raw/master/PTE_CheatScript.user.js
@@ -25,7 +25,7 @@
 				}
 				for (var key in bases)
 				{
-					if (bases[key].GetFullConditionInPercent() < 100)
+					if (!bases[key].get_IsGhostMode() && bases[key].GetFullConditionInPercent() < 100)
 					{
 						qx.core.Init.getApplication().getChat().getChatWidget().send("/cheat repairallpte " + i);
 					}
