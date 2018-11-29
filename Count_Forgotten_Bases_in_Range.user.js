@@ -41,7 +41,7 @@
                                     continue;
                                 }
                                 // Object isnt a NPC Base / Camp / Outpost
-                                
+
                                 if (object.Type !== ClientLib.Data.WorldSector.ObjectType.NPCBase)
                                 {
                                     continue;
@@ -94,7 +94,7 @@
                                     continue;
                                 }
                                 // Object isnt a NPC Base / Camp / Outpost
-                                
+
                                 if (object.Type !== ClientLib.Data.WorldSector.ObjectType.NPCBase)
                                 {
                                     continue;
@@ -114,7 +114,7 @@
                         }
                         return countButton.countBases(countButton.selectedBase.get_RawX(), countButton.selectedBase.get_RawY());
                     },
-                    
+
                     pasteCount: function (x, y, baseCount, baseData) {
                         var input = qx.core.Init.getApplication() .getChat() .getChatWidget() .getEditable();
                         // Input
@@ -175,9 +175,9 @@
                         }
                     }
                 };
-                
-                
-                
+
+
+
                 if ( webfrontend.gui.region.RegionCityMenu.prototype.__baseCounterButton_showMenu ){
                     webfrontend.gui.region.RegionCityMenu.prototype.showMenu = webfrontend.gui.region.RegionCityMenu.prototype.__baseCounterButton_showMenu;
                     webfrontend.gui.region.RegionCityMenu.prototype.__baseCounterButton_initialized = false;
@@ -205,17 +205,17 @@
                             for (var i in this) {
                                 try {
                                     if (this[i] && this[i].basename == "Composite") {
-                                        var coordbutton = new qx.ui.form.Button("Paste Coords");
+                                        /* var coordbutton = new qx.ui.form.Button("Paste Coords");
                                         coordbutton.addListener("execute", function () {
                                             countButton.pasteCoords();
-                                        });
+                                        }); */
                                         var countbutton = new qx.ui.form.Button("Paste Count");
                                         countbutton.addListener("execute", function () {
                                             countButton.count();
                                         });
-                                        this[i].add(coordbutton);
+                                        // this[i].add(coordbutton);
                                         this[i].add(countbutton);
-                                        this.__coordButton.push(coordbutton);
+                                        // this.__coordButton.push(coordbutton);
                                         this.__countButton.push(countbutton);
                                     }
                                 } catch (e) {
