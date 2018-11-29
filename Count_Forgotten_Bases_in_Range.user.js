@@ -6,7 +6,7 @@
 // @updateURL   https://raw.githubusercontent.com/leo7044/CnC_TA/master/Count_Forgotten_Bases_in_Range.user.js
 // @include     http*://prodgame*.alliances.commandandconquer.com/*/index.aspx*
 // @include     http*://cncapp*.alliances.commandandconquer.com/*/index.aspx*
-// @version     1.1.0.1
+// @version     1.1.0.2
 // @author      im not the author of the code - this script is based on Paste Coords Button and Shockr's BaseScanner sripts
 // @contributor leo7044 (https://github.com/leo7044)
 // ==/UserScript==
