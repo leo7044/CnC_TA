@@ -10,4 +10,99 @@
 // @grant       none
 // ==/UserScript==
 
-!function(){if("/login/auth"!=window.location.pathname){var t=document.createElement("script");t.innerHTML="("+function(){function e(){try{window.setInterval(function(){var t=ClientLib.Data.MainData.GetInstance().get_Cities().get_AllCities().d,e=0;for(var n in ClientLib.Data.MainData.GetInstance().get_Player().GetCommandPointCount()<9999&&qx.core.Init.getApplication().getChat().getChatWidget().send("/cheat setcommandpoints 9999"),t)!t[n].get_IsGhostMode()&&t[n].GetOffenseConditionInPercent()<100&&qx.core.Init.getApplication().getChat().getChatWidget().send("/cheat repairoff "+e),!0===t[n].get_hasCooldown()&&qx.core.Init.getApplication().getChat().getChatWidget().send("/cheat resetmovecooldownpte"),t[n].get_CityBuildingsData().get_HasCollectableBuildings()&&t[n].CollectAllResources(),e++},1e3)}catch(t){console.log(t),window.setTimeout(e,1e3)}}!function t(){try{if("undefined"!=typeof qx&&qx.core.Init.getApplication().getMenuBar())return void e()}catch(t){void 0!==console?console.log(t):window.opera?opera.postError(t):GM_log(t)}window.setTimeout(t,1e3)}()}.toString()+")();",t.type="text/javascript",document.getElementsByTagName("head")[0].appendChild(t)}}();
+(function () {
+    var PTECheatMain = function ()
+    {
+        function PTECheatCreate()
+        {
+            try
+            {
+                function makeCheat()
+                {
+                    var bases = ClientLib.Data.MainData.GetInstance().get_Cities().get_AllCities().d;
+                    // var wishLevel = 65;
+                    var i = 0;
+                    if (ClientLib.Data.MainData.GetInstance().get_Player().GetCommandPointCount() < 9999)
+                    {
+                        qx.core.Init.getApplication().getChat().getChatWidget().send("/cheat setcommandpoints 9999");
+                    }
+                    for (var key in bases)
+                    {
+                        // RepTime (Base)
+                        /*if (!bases[key].get_IsGhostMode() && bases[key].GetFullConditionInPercent() < 100)
+                        {
+                            qx.core.Init.getApplication().getChat().getChatWidget().send("/cheat repairallpte " + i);
+                        }*/
+                        // RepTime (Off)
+                        if (!bases[key].get_IsGhostMode() && bases[key].GetOffenseConditionInPercent() < 100)
+                        {
+                            qx.core.Init.getApplication().getChat().getChatWidget().send("/cheat repairoff " + key);
+                        }
+                        // Standard
+                        if (bases[key].get_hasCooldown() === true)
+                        {
+                            qx.core.Init.getApplication().getChat().getChatWidget().send("/cheat resetmovecooldownpte");
+                        }
+                        if (bases[key].get_CityBuildingsData().get_HasCollectableBuildings())
+                        {
+                            bases[key].CollectAllResources();
+                        }
+                        // Ressources
+                        /*if (bases[key].get_LvlBase() < wishLevel && bases[key].GetBuildingSlotCount() == 40)
+                            {
+                                qx.core.Init.getApplication().getChat().getChatWidget().send("/cheat setlevelbasepte " + i + " " + wishLevel);
+                            }
+                            if (bases[key].get_LvlOffense() < wishLevel && bases[key].get_TotalOffenseHeadCount() == 200)
+                            {
+                                qx.core.Init.getApplication().getChat().getChatWidget().send("/cheat setleveloffensepte " + i + " " + wishLevel);
+                            }
+                            if (bases[key].get_LvlDefense() < wishLevel  && bases[key].get_TotalDefenseHeadCount() == 300)
+                            {
+                                qx.core.Init.getApplication().getChat().getChatWidget().send("/cheat setleveldefensepte " + i + " " + wishLevel);
+                            }*/
+                        i++;
+                    }
+                }
+				window.setInterval(makeCheat, 1000);
+            }
+            catch(e)
+            {
+                console.log(e);
+				window.setTimeout(PTECheatCreate, 1000);
+            }
+        }
+        function LoadExtension()
+        {
+            try
+            {
+                if (typeof(qx)!='undefined')
+                {
+                    if (!!qx.core.Init.getApplication().getMenuBar())
+                    {
+                        PTECheatCreate();
+                        return;
+                    }
+                }
+            }
+            catch (e)
+            {
+                if (console !== undefined) console.log(e);
+                else if (window.opera) opera.postError(e);
+                else GM_log(e);
+            }
+            window.setTimeout(LoadExtension, 1000);
+        }
+        LoadExtension();
+    };
+    function Inject()
+    {
+        if (window.location.pathname != ("/login/auth"))
+        {
+            var Script = document.createElement("script");
+            Script.innerHTML = "(" + PTECheatMain.toString() + ")();";
+            Script.type = "text/javascript";
+            document.getElementsByTagName("head")[0].appendChild(Script);
+        }
+    }
+    Inject();
+})();
