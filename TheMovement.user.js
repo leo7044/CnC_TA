@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Tiberium Alliances The Movement
-// @version        1.0.3.1
+// @version        1.0.3.2
 // @license        GPL version 3 or any later version; http://www.gnu.org/copyleft/gpl.html
 // @author         petui
 // @contributor    leo7044 (https://github.com/leo7044)
@@ -143,7 +143,7 @@
 					TheMovement.Entrypoint.Abstract.call(this, history);
 
 					this.selectedObjectMemberName = webfrontend.gui.region.RegionCityMenu.prototype.onTick.toString()
-						.match(/if\(this\.([A-Za-z0-9_]+)!=null\)this\.[A-Za-z0-9_]+\(\);/)[1];
+						.match(/if\(this\.([A-Za-z0-9_]+)!==null\)this\.[A-Za-z0-9_]+\(\);/)[1];
 
 					this.actionButtons = {};
 					this.blankMenu = new qx.ui.container.Composite(new qx.ui.layout.VBox(0)).set({
