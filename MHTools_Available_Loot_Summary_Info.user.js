@@ -7,7 +7,7 @@
 // @include       http*://cncapp*.alliances.commandandconquer.com/*/index.aspx*
 // @author        MrHIDEn based on Yaeger & Panavia code. Totaly recoded.
 // @contributor   leo7044 (https://github.com/leo7044)
-// @version       1.8.3.1
+// @version       1.8.3.2
 // @grant         none
 // ==/UserScript==
 
@@ -926,10 +926,10 @@
                                     hp.name = '<b>Levels</b>';
                                     hp.lbs = ['Base:','Defence:','Offence:','Support:'];
                                     t = [];
-                                    if(el.Buildings.c>0) t.push(this.numberFormat(ec.get_LvlBase(), 1)); else t.push('--');
-                                    if(el.Defences.c>0) t.push(this.numberFormat(ec.get_LvlDefense(), 1)); else t.push('--');
-                                    if(el.Offences.c>0) t.push(this.numberFormat(ec.get_LvlOffense(), 1)); else t.push('--');
-                                    if(sd !== null) t.push(this.numberFormat(sl, 1)); else t.push('--');
+                                    if(el.Buildings.c>0) t.push(this.numberFormat(ec.get_LvlBase(), 2)); else t.push('--');
+                                    if(el.Defences.c>0) t.push(this.numberFormat(ec.get_LvlDefense(), 2)); else t.push('--');
+                                    if(el.Offences.c>0) t.push(this.numberFormat(ec.get_LvlOffense(), 2)); else t.push('--');
+                                    if(sd !== null) t.push(this.numberFormat(sl, 0)); else t.push('--');
                                     hp.val = t;
                                     this.Display.twoLineInfoArrays.push(hp);
                                 }
@@ -957,7 +957,7 @@
                                         //ea
                                         ohp = ec.GetOffenseConditionInPercent();
                                         //ohp = ec.GetOffenseConditionInPercent();//GetOffenseConditionInPercent ()
-                                        ofl = this.numberFormat(ec.get_LvlOffense(), 1);
+                                        ofl = this.numberFormat(ec.get_LvlOffense(), 2);
                                         //console.log('ec',ec,'ec.get_LvlOffense()',ec.get_LvlOffense());
                                     } else {
                                         ohp = '---';
