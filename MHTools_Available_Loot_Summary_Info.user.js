@@ -1,13 +1,12 @@
 // ==UserScript==
 // @name          CnC: MHTools Tiberium Alliances Available Loot Summary + Info
 // @description   CROSS SERVERS Loot & troops & bases & distance info.
-// @downloadURL   https://raw.githubusercontent.com/leo7044/CnC_TA/master/MHTools_Available_Loot_Summary_Info.user.js
-// @updateURL     https://raw.githubusercontent.com/leo7044/CnC_TA/master/MHTools_Available_Loot_Summary_Info.user.js
-// @include       http*://prodgame*.alliances.commandandconquer.com/*/index.aspx*
+// @downloadURL   https://github.com/leo7044/CnC_TA/raw/master/MHTools_Available_Loot_Summary_Info.user.js
+// @updateURL     https://github.com/leo7044/CnC_TA/raw/master/MHTools_Available_Loot_Summary_Info.user.js
 // @include       http*://cncapp*.alliances.commandandconquer.com/*/index.aspx*
 // @author        MrHIDEn based on Yaeger & Panavia code. Totaly recoded.
 // @contributor   leo7044 (https://github.com/leo7044)
-// @version       1.8.3.2
+// @version       1.8.3.3
 // @grant         none
 // ==/UserScript==
 
@@ -164,6 +163,7 @@
                             showRepairTime:          {v:true,  d:true,  l:'Shows Repair Times info for Enemy Base/Camp/Outpost'},
                             showAllyRepairTimeInfo:  {v:true,  d:true,  l:'Shows Ally/Your Repair Times info'},
                             showLevels:              {v:true,  d:true,  l:'Shows Levels of Base/Defence/Offence info'},
+                            showProd:                {v:true,  d:true,  l:'Shows Prod of Base'},
                             showColumnLetter:        {v:false, d:false, l:'Shows columns letters for DF/CY position Ex A-1 or E-4. If \'false\' shows only 1 or 4'},
                             showDistance:            {v:true,  d:true,  l:'Shows distance from selected base to the selected object'}
                         },
@@ -930,6 +930,19 @@
                                     if(el.Defences.c>0) t.push(this.numberFormat(ec.get_LvlDefense(), 2)); else t.push('--');
                                     if(el.Offences.c>0) t.push(this.numberFormat(ec.get_LvlOffense(), 2)); else t.push('--');
                                     if(sd !== null) t.push(this.numberFormat(sl, 0)); else t.push('--');
+                                    hp.val = t;
+                                    this.Display.twoLineInfoArrays.push(hp);
+                                }
+
+                                if(this.settings.showProd.v) {
+                                    hp = {};
+                                    hp.name = '<b>Production</b>';
+                                    hp.lbs = ['Tiberium:','Crystal:','Power:','Credits:'];
+                                    t = [];
+                                    t.push(parseInt(ec.GetResourceGrowPerHour(ClientLib.Base.EResourceType.Tiberium, true, true)).toLocaleString());
+                                    t.push(parseInt(ec.GetResourceGrowPerHour(ClientLib.Base.EResourceType.Crystal, true, true)).toLocaleString());
+                                    t.push(parseInt(ec.GetResourceGrowPerHour(ClientLib.Base.EResourceType.Power, true, true)).toLocaleString());
+                                    t.push(parseInt(ClientLib.Base.Resource.GetResourceGrowPerHour(ec.get_CityCreditsProduction(), true)).toLocaleString());
                                     hp.val = t;
                                     this.Display.twoLineInfoArrays.push(hp);
                                 }
