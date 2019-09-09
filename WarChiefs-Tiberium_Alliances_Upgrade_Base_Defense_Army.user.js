@@ -3,7 +3,8 @@
 // @description     Upgrade your Base,Defense Army to a specific Level.
 // @author          Eistee
 // @contributor     leo7044 (https://github.com/leo7044)
-// @version         2018.06.05
+// @contributor     nefrontheone (thx for spanish translation)
+// @version         2019.09.09
 // @downloadURL     https://raw.githubusercontent.com/leo7044/CnC_TA/master/WarChiefs-Tiberium_Alliances_Upgrade_Base_Defense_Army.user.js
 // @updateURL       https://raw.githubusercontent.com/leo7044/CnC_TA/master/WarChiefs-Tiberium_Alliances_Upgrade_Base_Defense_Army.user.js
 // @include         http*://prodgame*.alliances.commandandconquer.com/*/index.aspx*
@@ -774,6 +775,16 @@
 				"All defense units": "Все оборонные юниты",
 				"Selected army unit": "Выделенный юнит атаки",
 				"All army units": "Все юниты атаки"
+			});
+			
+			// Spanish
+			localeManager.addTranslation("es", {
+				"Selected building": "Edificio seleccionado",
+				"All buildings": "Todos los edificios",
+				"Selected defense unit": "Unidad defensiva seleccionada",
+				"All defense units": "Todas las unidades defensivas",
+				"Selected army unit": "Unidad de ataque seleccionada",
+				"All army units": "Todas las unidades de ataque"
 			});
 		}
 		function waitForGame() {
