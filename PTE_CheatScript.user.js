@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        PTE_CheatScript
-// @version     2019.05.02
+// @version     2020.03.04
 // @author      leo7044 (https://github.com/leo7044)
 // @description PTE_CheatScript
 // @downloadURL https://github.com/leo7044/CnC_TA/raw/master/PTE_CheatScript.user.js
@@ -22,10 +22,10 @@
                     var bases = ClientLib.Data.MainData.GetInstance().get_Cities().get_AllCities().d;
                     // var wishLevel = 65;
                     var i = 0;
-                    if (ClientLib.Data.MainData.GetInstance().get_Player().GetCommandPointCount() < 9999)
+                    /*if (ClientLib.Data.MainData.GetInstance().get_Player().GetCommandPointCount() < 9999)
                     {
                         qx.core.Init.getApplication().getChat().getChatWidget().send("/cheat setcommandpoints 9999");
-                    }
+                    }*/
                     for (var key in bases)
                     {
                         // RepTime (Base)
@@ -34,10 +34,10 @@
                             qx.core.Init.getApplication().getChat().getChatWidget().send("/cheat repairallpte " + i);
                         }*/
                         // RepTime (Off)
-                        if (!bases[key].get_IsGhostMode() && bases[key].GetOffenseConditionInPercent() < 100)
+                        /*if (!bases[key].get_IsGhostMode() && bases[key].GetOffenseConditionInPercent() < 100 && bases[key].get_LvlOffense() > 0)
                         {
                             qx.core.Init.getApplication().getChat().getChatWidget().send("/cheat repairoff " + key);
-                        }
+                        }*/
                         // Standard
                         if (bases[key].get_hasCooldown() === true)
                         {
@@ -46,6 +46,10 @@
                         if (bases[key].get_CityBuildingsData().get_HasCollectableBuildings())
                         {
                             bases[key].CollectAllResources();
+                        }
+                        if (bases[key].CanRepairAll())
+                        {
+                            bases[key].RepairAll();
                         }
                         // Ressources
                         /*if (bases[key].get_LvlBase() < wishLevel && bases[key].GetBuildingSlotCount() == 40)
