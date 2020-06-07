@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        PTE_CheatScript
-// @version     2020.06.07
+// @version     2020.06.07.1
 // @author      leo7044 (https://github.com/leo7044)
 // @description PTE_CheatScript
 // @downloadURL https://github.com/leo7044/CnC_TA/raw/master/PTE_CheatScript.user.js
@@ -48,7 +48,7 @@
                         {
                             bases[key].CollectAllResources();
                         }
-                        if (bases[key].get_CityRepairData().CanRepairAll(ClientLib.Vis.Mode.ArmySetup)())
+                        if (bases[key].get_CityRepairData().CanRepairAll(ClientLib.Vis.Mode.ArmySetup))
                         {
                             bases[key].get_CityRepairData().RepairAll(ClientLib.Vis.Mode.ArmySetup);
                         }
