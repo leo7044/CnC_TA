@@ -6,7 +6,7 @@
 // @updateURL   https://raw.githubusercontent.com/leo7044/CnC_TA/master/Count_Forgotten_Bases_in_Range.user.js
 // @include     http*://prodgame*.alliances.commandandconquer.com/*/index.aspx*
 // @include     http*://cncapp*.alliances.commandandconquer.com/*/index.aspx*
-// @version     1.1.0.2
+// @version     1.1.0.3
 // @author      im not the author of the code - this script is based on Paste Coords Button and Shockr's BaseScanner sripts
 // @contributor leo7044 (https://github.com/leo7044)
 // ==/UserScript==
@@ -20,6 +20,8 @@
                     countBases: function (x, y) {
                         var levelCount = [];
                         var count = 0;
+                        var waves = 1;
+                        var average = 0;
                         var maxAttack = 10;
                         var world = ClientLib.Data.MainData.GetInstance() .get_World();
                         for (var scanY = y - 10; scanY <= y + 10; scanY++)
@@ -56,8 +58,21 @@
                                 }
                                 var level = object.getLevel();
                                 levelCount[level] = (levelCount[level] || 0) + 1;
+                                average += level;
                                 count++;
                             }
+                        }
+                        if(count > 49) {
+                            waves = 5;
+                        } else if(count > 39) {
+                            waves = 4;
+                        } else if(count > 29) {
+                            waves = 3;
+                        } else if(count > 19) {
+                            waves = 2;
+                        }
+                        if(average !== 0){
+                            average /= count;
                         }
                         var output = [];
                         for (var i = 0; i < levelCount.length; i++)
@@ -69,7 +84,7 @@
                             }
                         }
                         console.log(x + ':' + y + ' [' + count + ' Bases: ' + output.join(' ') + ']');
-                        countButton.pasteCount(x, y, count, output.join(' '));
+                        countButton.pasteCount(x, y, count, output.join(' '), waves, average.toFixed(2));
                     },
                     countSoloBases: function (x, y) {
                         var count = 0;
@@ -115,7 +130,7 @@
                         return countButton.countBases(countButton.selectedBase.get_RawX(), countButton.selectedBase.get_RawY());
                     },
 
-                    pasteCount: function (x, y, baseCount, baseData) {
+                    pasteCount: function (x, y, baseCount, baseData, waves, average) {
                         var input = qx.core.Init.getApplication() .getChat() .getChatWidget() .getEditable();
                         // Input
                         var dom = input.getContentElement() .getDomElement();
@@ -123,7 +138,7 @@
                         var result = new Array();
                         result.push(dom.value.substring(0, dom.selectionStart));
                         // start
-                        result.push('[coords]' + x + ':' + y + '[/coords] [' + baseCount + ' Bases: ' + baseData + ']');
+                        result.push('[coords]' + x + ':' + y + '[/coords] [' + baseCount + ' Bases (' + waves + ' waves): ' + baseData + ' (' + average + ')]');
                         result.push(dom.value.substring(dom.selectionEnd, dom.value.length));
                         // end
                         input.setValue(result.join(' '));
