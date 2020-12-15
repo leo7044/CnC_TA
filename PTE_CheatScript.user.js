@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        PTE_CheatScript
-// @version     2020.06.07.1
+// @version     2020.12.15
 // @author      leo7044 (https://github.com/leo7044)
 // @description PTE_CheatScript
 // @downloadURL https://github.com/leo7044/CnC_TA/raw/master/PTE_CheatScript.user.js
@@ -23,10 +23,10 @@
                     // var wishLevel = 65;
                     var i = 0;
                     // CP-Cheat
-                    /*if (ClientLib.Data.MainData.GetInstance().get_Player().GetCommandPointCount() < 9999)
+                    if (ClientLib.Data.MainData.GetInstance().get_Player().GetCommandPointCount() < 9999)
                     {
                         qx.core.Init.getApplication().getChat().getChatWidget().send("/cheat setcommandpoints 9999");
-                    }*/
+                    }
                     for (var key in bases)
                     {
                         // RepTime (Base)
@@ -35,10 +35,10 @@
                             qx.core.Init.getApplication().getChat().getChatWidget().send("/cheat repairallpte " + i);
                         }*/
                         // RepTime (Off)
-                        /*if (!bases[key].get_IsGhostMode() && bases[key].GetOffenseConditionInPercent() < 100 && bases[key].get_LvlOffense() > 0)
+                        if (!bases[key].get_IsGhostMode() && bases[key].GetOffenseConditionInPercent() < 100 && bases[key].get_LvlOffense() > 0)
                         {
                             qx.core.Init.getApplication().getChat().getChatWidget().send("/cheat repairoff " + key);
-                        }*/
+                        }
                         // Standard
                         if (bases[key].get_hasCooldown() === true)
                         {
