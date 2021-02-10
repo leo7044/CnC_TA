@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        PTE_CheatScript
-// @version     2020.12.27
+// @version     2021.02.10
 // @author      leo7044 (https://github.com/leo7044)
 // @description PTE_CheatScript
 // @downloadURL https://github.com/leo7044/CnC_TA/raw/master/PTE_CheatScript.user.js
@@ -47,6 +47,10 @@
                         if (bases[key].get_CityBuildingsData().get_HasCollectableBuildings())
                         {
                             bases[key].CollectAllResources();
+                        }
+                        if (bases[key].GetResourceCount(ClientLib.Base.EResourceType.Tiberium) < bases[key].GetResourceMaxStorage(ClientLib.Base.EResourceType.Tiberium) || bases[key].GetResourceCount(ClientLib.Base.EResourceType.Crystal) < bases[key].GetResourceMaxStorage(ClientLib.Base.EResourceType.Crystal) || bases[key].GetResourceCount(ClientLib.Base.EResourceType.Power) < bases[key].GetResourceMaxStorage(ClientLib.Base.EResourceType.Power))
+                        {
+                            qx.core.Init.getApplication().getChat().getChatWidget().send("/cheat maxresources " + key);
                         }
                         /*if (bases[key].get_CityRepairData().CanRepairAll(ClientLib.Vis.Mode.ArmySetup))
                         {
