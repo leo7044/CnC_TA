@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        PTE_CheatScript
-// @version     2021.02.12
+// @version     2021.02.12.1
 // @author      leo7044 (https://github.com/leo7044)
 // @description PTE_CheatScript
 // @downloadURL https://github.com/leo7044/CnC_TA/raw/master/PTE_CheatScript.user.js
@@ -17,45 +17,52 @@
         {
             try
             {
+                var cheat_setcommandpoints = false;
+                var cheat_resetmovecooldownpte = true;
+                var cheat_repairallpte = false;
+                var cheat_repairoff = true;
+                var cheat_maxresources = false;
                 function makeCheat()
                 {
                     var bases = ClientLib.Data.MainData.GetInstance().get_Cities().get_AllCities().d;
                     // var wishLevel = 65;
                     var i = 0;
                     // CP-Cheat
-                    /*if (ClientLib.Data.MainData.GetInstance().get_Player().GetCommandPointCount() < 9999)
+                    if (cheat_setcommandpoints && ClientLib.Data.MainData.GetInstance().get_Player().GetCommandPointCount() < 9999)
                     {
                         qx.core.Init.getApplication().getChat().getChatWidget().send("/cheat setcommandpoints 9999");
-                    }*/
+                    }
                     for (var key in bases)
                     {
-                        // RepTime (Base)
-                        /*if (!bases[key].get_IsGhostMode() && bases[key].GetFullConditionInPercent() < 100)
-                        {
-                            qx.core.Init.getApplication().getChat().getChatWidget().send("/cheat repairallpte " + i);
-                        }*/
-                        // RepTime (Off)
-                        if (!bases[key].get_IsGhostMode() && bases[key].GetOffenseConditionInPercent() < 100 && bases[key].get_LvlOffense() > 0)
-                        {
-                            qx.core.Init.getApplication().getChat().getChatWidget().send("/cheat repairoff " + key);
-                        }
-                        // Standard
-                        if (bases[key].get_hasCooldown() === true)
+                        // Basis verlegen
+                        if (cheat_resetmovecooldownpte && bases[key].get_hasCooldown() === true)
                         {
                             qx.core.Init.getApplication().getChat().getChatWidget().send("/cheat resetmovecooldownpte");
                         }
+                        // RepTime (Base)
+                        if (cheat_repairallpte && !bases[key].get_IsGhostMode() && bases[key].GetFullConditionInPercent() < 100)
+                        {
+                            qx.core.Init.getApplication().getChat().getChatWidget().send("/cheat repairallpte " + i);
+                        }
+                        // RepTime (Off)
+                        if (cheat_repairoff && !bases[key].get_IsGhostMode() && bases[key].GetOffenseConditionInPercent() < 100 && bases[key].get_LvlOffense() > 0)
+                        {
+                            qx.core.Init.getApplication().getChat().getChatWidget().send("/cheat repairoff " + key);
+                        }
+                        else if (!cheat_repairoff && !cheat_repairallpte && bases[key].get_CityRepairData().CanRepairAll(ClientLib.Vis.Mode.ArmySetup))
+                        {
+                            bases[key].get_CityRepairData().RepairAll(ClientLib.Vis.Mode.ArmySetup);
+                        }
+                        // maximale Ressourcen
+                        if (cheat_maxresources && (bases[key].GetResourceCount(ClientLib.Base.EResourceType.Tiberium) < bases[key].GetResourceMaxStorage(ClientLib.Base.EResourceType.Tiberium) || bases[key].GetResourceCount(ClientLib.Base.EResourceType.Crystal) < bases[key].GetResourceMaxStorage(ClientLib.Base.EResourceType.Crystal) || bases[key].GetResourceCount(ClientLib.Base.EResourceType.Power) < bases[key].GetResourceMaxStorage(ClientLib.Base.EResourceType.Power)))
+                        {
+                            qx.core.Init.getApplication().getChat().getChatWidget().send("/cheat maxresources " + key);
+                        }
+                        // Pakete einsammeln
                         if (bases[key].get_CityBuildingsData().get_HasCollectableBuildings())
                         {
                             bases[key].CollectAllResources();
                         }
-                        /*if (bases[key].GetResourceCount(ClientLib.Base.EResourceType.Tiberium) < bases[key].GetResourceMaxStorage(ClientLib.Base.EResourceType.Tiberium) || bases[key].GetResourceCount(ClientLib.Base.EResourceType.Crystal) < bases[key].GetResourceMaxStorage(ClientLib.Base.EResourceType.Crystal) || bases[key].GetResourceCount(ClientLib.Base.EResourceType.Power) < bases[key].GetResourceMaxStorage(ClientLib.Base.EResourceType.Power))
-                        {
-                            qx.core.Init.getApplication().getChat().getChatWidget().send("/cheat maxresources " + key);
-                        }*/
-                        /*if (bases[key].get_CityRepairData().CanRepairAll(ClientLib.Vis.Mode.ArmySetup))
-                        {
-                            bases[key].get_CityRepairData().RepairAll(ClientLib.Vis.Mode.ArmySetup);
-                        }*/
                         // Ressources
                         /*if (bases[key].get_LvlBase() < wishLevel && bases[key].GetBuildingSlotCount() == 40)
                             {
