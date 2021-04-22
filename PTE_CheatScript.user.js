@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        PTE_CheatScript
-// @version     2021.04.15
+// @version     2021.04.22
 // @author      leo7044 (https://github.com/leo7044)
 // @description PTE_CheatScript
 // @downloadURL https://github.com/leo7044/CnC_TA/raw/master/PTE_CheatScript.user.js
@@ -17,10 +17,10 @@
         {
             try
             {
-                var cheat_setcommandpoints = false;
+                var cheat_setcommandpoints = true;
                 var cheat_resetmovecooldownpte = true;
                 var cheat_repairallpte = false;
-                var cheat_repairoff = false;
+                var cheat_repairoff = true;
                 var cheat_maxresources = false;
                 function makeCheat()
                 {
