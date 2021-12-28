@@ -3,7 +3,7 @@
 // @description Tunnel info
 // @namespace TATI
 // @include http*://prodgame*.alliances.commandandconquer.com/*/index.aspx*
-// @version 2.2.1.2
+// @version 2.2.1.3
 // @downloadURL    https://raw.githubusercontent.com/leo7044/CnC_TA/master/TunnelInfo.user.js
 // @updateURL      https://raw.githubusercontent.com/leo7044/CnC_TA/master/TunnelInfo.user.js
 // @include        http*://prodgame*.alliances.commandandconquer.com/*/index.aspx*
@@ -46,6 +46,7 @@
 							this._App = qx.core.Init.getApplication();
 							this._MainData = ClientLib.Data.MainData.GetInstance();
 							this._VisMain = ClientLib.Vis.VisMain.GetInstance();
+							this.differenceTunnelOffense = this._MainData.get_Server().get_POIActivationLevelDifference();
 
 							this.tunnelMarkerList = [];
 
@@ -172,10 +173,10 @@
                                                     var tunnelLevel = visObject.get_Level();
                                                     var distanceToTunnel = ClientLib.Base.Util.CalculateDistance(startX, startY, tunnelX, tunnelY);
                                                     if (distanceToTunnel <= this.tunnelInfluenceRange) {
-                                                        if (this.currentCityOffenseLevel < tunnelLevel - 6) { // Blocking Tunnel
+                                                        if (this.currentCityOffenseLevel < tunnelLevel - this.differenceTunnelOffense) { // Blocking Tunnel
                                                             this.regionCityMoveInfoAddonExists = true;
-                                                            if (this.requiredOffenseLevel < tunnelLevel - 6)
-                                                                this.requiredOffenseLevel = tunnelLevel - 6;
+                                                            if (this.requiredOffenseLevel < tunnelLevel - this.differenceTunnelOffense)
+                                                                this.requiredOffenseLevel = tunnelLevel - this.differenceTunnelOffense;
                                                             this.addTunnelMarker(tunnelX, tunnelY, "#ff3600");
                                                         } else { // Activating Tunnel
                                                             this.addTunnelMarker(tunnelX, tunnelY, "#06ff00");
