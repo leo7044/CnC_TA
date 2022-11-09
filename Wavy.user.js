@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Tiberium Alliances Wavy
-// @version        0.5.8
+// @version        0.5.8.1
 // @namespace      https://openuserjs.org/users/petui
 // @license        GPL version 3 or any later version; http://www.gnu.org/copyleft/gpl.html
 // @author         petui
@@ -8,7 +8,6 @@
 // @contributor    leo7044 (https://github.com/leo7044) Distance-Fix
 // @description    Displays details about forgotten attack wave zones.
 // @match          https://*.alliances.commandandconquer.com/*/index.aspx*
-// @updateURL      https://raw.githubusercontent.com/netquik/CnCTA-SoO-SCRIPT-PACK/master/TA_Wavy.user.js
 // ==/UserScript==
 'use strict';
 
