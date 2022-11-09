@@ -1,20 +1,19 @@
 // ==UserScript==
 // @name           Tiberium Alliances Wavy
-// @version        0.5.4.2
+// @version        0.5.8
 // @namespace      https://openuserjs.org/users/petui
 // @license        GPL version 3 or any later version; http://www.gnu.org/copyleft/gpl.html
 // @author         petui
-// @contributor    leo7044 (https://github.com/leo7044)
+// @contributor    NetquiK (https://github.com/netquik) Distance FIX | 22.3 FIX
+// @contributor    leo7044 (https://github.com/leo7044) Distance-Fix
 // @description    Displays details about forgotten attack wave zones.
-// @downloadURL    https://raw.githubusercontent.com/leo7044/CnC_TA/master/Wavy.user.js
-// @updateURL      https://raw.githubusercontent.com/leo7044/CnC_TA/master/Wavy.user.js
-// @include        http*://prodgame*.alliances.commandandconquer.com/*/index.aspx*
-// @include        http*://cncapp*.alliances.commandandconquer.com/*/index.aspx*
+// @match          https://*.alliances.commandandconquer.com/*/index.aspx*
+// @updateURL      https://raw.githubusercontent.com/netquik/CnCTA-SoO-SCRIPT-PACK/master/TA_Wavy.user.js
 // ==/UserScript==
 'use strict';
 
-(function() {
-	var main = function() {
+(function () {
+	var main = function () {
 		'use strict';
 
 		function createWavy() {
@@ -24,7 +23,7 @@
 				type: 'singleton',
 				extend: qx.core.Object,
 				statics: {
-					ForgottenAttackDistance: 10
+					ForgottenAttackDistance: ClientLib.Data.MainData.GetInstance().get_Server().get_MaxAttackDistance()
 				},
 				members: {
 					regionCityInfoContainer: null,
@@ -34,7 +33,7 @@
 					regionCityMoveInfoLevelLabel: null,
 					regionCityMoveInfoCache: null,
 
-					initialize: function() {
+					initialize: function () {
 						this.initializeHacks();
 
 						var regionCityInfoCountContainer = new qx.ui.container.Composite(new qx.ui.layout.HBox(4));
@@ -107,92 +106,94 @@
 						phe.cnc.Util.attachNetEvent(moveBaseMouseTool, 'OnActivate', ClientLib.Vis.MouseTool.OnActivate, this, this.onMoveBaseMouseToolActivate);
 					},
 
-					initializeHacks: function() {
+					initializeHacks: function () {
 						var source;
 
 						if (typeof webfrontend.gui.region.RegionCityInfo.prototype.getObject !== 'function') {
 							source = webfrontend.gui.region.RegionCityInfo.prototype.setObject.toString();
-                            /*var objectMemberName = PerforceChangelist >= 448942 && PerforceChangelist < 451851
-								? source.match(/^function \(([A-Za-z]+)\)\{.+([A-Za-z]+)=\1\.object;[\s\S]+this\.([A-Za-z_]+)=\2;/)[3]
-								: source.match(/^function \(([A-Za-z]+)(?:,[A-Za-z]+)?\)\{.+this\.([A-Za-z_]+)=\1;/)[2];*/
-							var objectMemberName = source;
-
+							/* source = source.replace("function(", "function (");
+							var objectMemberName = PerforceChangelist >= 448942 && PerforceChangelist < 451851 ?
+								source.match(/^function \(([A-Za-z]+)\)\{.+([A-Za-z]+)=\1\.object;[\s\S]+this\.([A-Za-z_]+)=\2;/)[3] :
+								source.match(/^function \(([A-Za-z]+)(?:,[A-Za-z]+)?\)\{.+this\.([A-Za-z_]+)=\1;/)[2]; */
+							//MOD 2.3 (multiple)
+							var objectMemberName = source.match(/\|\|0[,;if(]+this\.([a-zA-Z_]+)/)[1];
+							
 							/**
 							 * @returns {ClientLib.Vis.Region.RegionObject}
 							 */
-							webfrontend.gui.region.RegionCityInfo.prototype.getObject = function() {
+							webfrontend.gui.region.RegionCityInfo.prototype.getObject = function () {
 								return this[objectMemberName];
 							};
 						}
 
 						if (typeof ClientLib.Data.WorldSector.WorldObjectNPCBase.prototype.get_BaseLevelFloat !== 'function') {
 							source = ClientLib.Vis.Region.RegionNPCBase.prototype.get_BaseLevelFloat.toString();
-							var npcBaseBaseLevelFloatMemberName = source.match(/return this\.[A-Z]{6}\.([A-Z]{6});/)[1];
+							var npcBaseBaseLevelFloatMemberName = source.match(/return this\.[A-Z]{6}\.([A-Z]{6})/)[1];
 
 							/**
 							 * @returns {Number}
 							 */
-							ClientLib.Data.WorldSector.WorldObjectNPCBase.prototype.get_BaseLevelFloat = function() {
+							ClientLib.Data.WorldSector.WorldObjectNPCBase.prototype.get_BaseLevelFloat = function () {
 								return this[npcBaseBaseLevelFloatMemberName];
 							};
 						}
 
 						if (typeof ClientLib.Data.WorldSector.WorldObjectNPCBase.prototype.get_BaseLevel !== 'function') {
 							source = ClientLib.Vis.Region.RegionNPCBase.prototype.get_BaseLevel.toString();
-							var npcBaseBaseLevelMemberName = source.match(/return this\.[A-Z]{6}\.([A-Z]{6});/)[1];
+							var npcBaseBaseLevelMemberName = source.match(/return this\.[A-Z]{6}\.([A-Z]{6})/)[1];
 
 							/**
 							 * @returns {Number}
 							 */
-							ClientLib.Data.WorldSector.WorldObjectNPCBase.prototype.get_BaseLevel = function() {
+							ClientLib.Data.WorldSector.WorldObjectNPCBase.prototype.get_BaseLevel = function () {
 								return this[npcBaseBaseLevelMemberName];
 							};
 						}
 
 						if (typeof ClientLib.Data.WorldSector.WorldObjectNPCCamp.prototype.get_BaseLevelFloat !== 'function') {
 							source = ClientLib.Vis.Region.RegionNPCCamp.prototype.get_BaseLevelFloat.toString();
-							var npcCampBaseLevelFloatMemberName = source.match(/return this\.[A-Z]{6}\.([A-Z]{6});/)[1];
+							var npcCampBaseLevelFloatMemberName = source.match(/return this\.[A-Z]{6}\.([A-Z]{6})/)[1];
 
 							/**
 							 * @returns {Number}
 							 */
-							ClientLib.Data.WorldSector.WorldObjectNPCCamp.prototype.get_BaseLevelFloat = function() {
+							ClientLib.Data.WorldSector.WorldObjectNPCCamp.prototype.get_BaseLevelFloat = function () {
 								return this[npcCampBaseLevelFloatMemberName];
 							};
 						}
 
 						if (typeof ClientLib.Data.WorldSector.WorldObjectNPCCamp.prototype.get_CampType !== 'function') {
 							source = ClientLib.Vis.Region.RegionNPCCamp.prototype.get_CampType.toString();
-							var npcCampTypeMemberName = source.match(/return this\.[A-Z]{6}\.([A-Z]{6});/)[1];
+							var npcCampTypeMemberName = source.match(/return this\.[A-Z]{6}\.([A-Z]{6})/)[1];
 
 							/**
 							 * @returns {ClientLib.Data.WorldSector.WorldObjectNPCCamp.ECampType}
 							 */
-							ClientLib.Data.WorldSector.WorldObjectNPCCamp.prototype.get_CampType = function() {
+							ClientLib.Data.WorldSector.WorldObjectNPCCamp.prototype.get_CampType = function () {
 								return this[npcCampTypeMemberName];
 							};
 						}
 
 						if (typeof ClientLib.Data.WorldSector.WorldObjectPointOfInterest.prototype.get_Level !== 'function') {
 							source = ClientLib.Vis.Region.RegionPointOfInterest.prototype.get_Level.toString();
-							var poiLevelMemberName = source.match(/return this\.[A-Z]{6}\.([A-Z]{6});/)[1];
+							var poiLevelMemberName = source.match(/return this\.[A-Z]{6}\.([A-Z]{6})/)[1];
 
 							/**
 							 * @returns {Number}
 							 */
-							ClientLib.Data.WorldSector.WorldObjectPointOfInterest.prototype.get_Level = function() {
+							ClientLib.Data.WorldSector.WorldObjectPointOfInterest.prototype.get_Level = function () {
 								return this[poiLevelMemberName];
 							};
 						}
 
 						if (typeof ClientLib.Data.WorldSector.WorldObjectPointOfInterest.prototype.get_Type !== 'function') {
 							source = ClientLib.Vis.Region.RegionPointOfInterest.prototype.get_Type.toString();
-							var poiTypeMemberName = source.match(/return this\.[A-Z]{6}\.([A-Z]{6});/)[1];
+							var poiTypeMemberName = source.match(/return this\.[A-Z]{6}\.([A-Z]{6})/)[1];
 
 							/**
 							 * @returns {ClientLib.Data.WorldSector.WorldObjectPointOfInterest.EPOIType}
 							 */
-							ClientLib.Data.WorldSector.WorldObjectPointOfInterest.prototype.get_Type = function() {
+							ClientLib.Data.WorldSector.WorldObjectPointOfInterest.prototype.get_Type = function () {
 								return this[poiTypeMemberName];
 							};
 						}
@@ -201,7 +202,7 @@
 					/**
 					 * @param {qx.event.type.Event} event
 					 */
-					onRegionObjectStatusInfoAppear: function(event) {
+					onRegionObjectStatusInfoAppear: function (event) {
 						var regionObjectStatusInfo = event.getTarget();
 						var visObject = regionObjectStatusInfo.getLayoutParent().getObject();
 						var worldObjectNPCBases = this.getWorldObjectsWithinRange(
@@ -216,14 +217,13 @@
 
 						if (Object.keys(npcBaseLevels).length > 0) {
 							this.regionCityInfoLevelLabel.setValue(
-								Object.keys(npcBaseLevels).sort(function(a, b) {
+								Object.keys(npcBaseLevels).sort(function (a, b) {
 									return b - a;
-								}).map(function(baseLevel) {
+								}).map(function (baseLevel) {
 									return npcBaseLevels[baseLevel] + ' x ' + baseLevel;
 								}).join(', ')
 							);
-						}
-						else {
+						} else {
 							this.regionCityInfoLevelLabel.setValue('-');
 						}
 
@@ -234,7 +234,7 @@
 					 * @param {Number} x
 					 * @param {Number} y
 					 */
-					onMoveBaseMouseToolCellChange: function(x, y) {
+					onMoveBaseMouseToolCellChange: function (x, y) {
 						var coords = ClientLib.Base.MathUtil.EncodeCoordId(x, y);
 
 						if (!(coords in this.regionCityMoveInfoCache)) {
@@ -254,23 +254,22 @@
 
 						if (Object.keys(cached.levels).length > 0) {
 							this.regionCityMoveInfoLevelLabel.setValue(
-								Object.keys(cached.levels).sort(function(a, b) {
+								Object.keys(cached.levels).sort(function (a, b) {
 									return b - a;
-								}).map(function(baseLevel) {
+								}).map(function (baseLevel) {
 									return cached.levels[baseLevel] + ' x ' + baseLevel;
 								}).join(', ')
 							);
-						}
-						else {
+						} else {
 							this.regionCityMoveInfoLevelLabel.setValue('-');
 						}
 					},
 
-					onMoveBaseMouseToolDeactivate: function() {
+					onMoveBaseMouseToolDeactivate: function () {
 						this.regionCityMoveInfoCache = null;
 					},
 
-					onMoveBaseMouseToolActivate: function() {
+					onMoveBaseMouseToolActivate: function () {
 						this.regionCityMoveInfoCache = {};
 					},
 
@@ -281,9 +280,8 @@
 					 * @param {Array<ClientLib.Data.WorldSector.ObjectType>} worldObjectTypes
 					 * @returns {Object}
 					 */
-					getWorldObjectsWithinRange: function(x, y, maxDistance, worldObjectTypes) {
+					getWorldObjectsWithinRange: function (x, y, maxDistance, worldObjectTypes) {
 						var world = ClientLib.Data.MainData.GetInstance().get_World();
-						var maxDistanceSquared = maxDistance * maxDistance;
 						var maxDistanceFloored = Math.floor(maxDistance);
 
 						var minX = x - maxDistanceFloored;
@@ -300,7 +298,7 @@
 							for (var scanY = minY; scanY <= maxY; scanY++) {
 								var distanceSquared = (x - scanX) * (x - scanX) + (y - scanY) * (y - scanY);
 
-								if (distanceSquared > maxDistanceSquared) {
+								if (distanceSquared > 100) {
 									continue;
 								}
 
@@ -319,7 +317,7 @@
 					 * @param {Array} worldObjectNPCBases
 					 * @returns {Object}
 					 */
-					getNPCBaseLevels: function(worldObjectNPCBases) {
+					getNPCBaseLevels: function (worldObjectNPCBases) {
 						var npcBaseLevels = {};
 
 						for (var i = 0; i < worldObjectNPCBases.length; i++) {
@@ -338,13 +336,14 @@
 					/**
 					 * @param {ClientLib.Data.Notification} notification
 					 */
-					onNotificationAdded: function(notification) {
+					onNotificationAdded: function (notification) {
 						if (notification.get_CategoryId() === ClientLib.Data.ENotificationCategory.Combat) {
 							switch (notification.get_MdbId()) {
 								case ClientLib.Data.ENotificationId.NPCPlayerCombatBattleDefaultDefense:
 								case ClientLib.Data.ENotificationId.NPCPlayerCombatBattleTotalLostDefense:
 									var reportDetails = this.getNoficationParameter(notification, webfrontend.gui.notifications.NotificationsUtil.ParameterReportId);
-									var reportId = reportDetails[0], playerReportType = reportDetails[1];
+									var reportId = reportDetails[0],
+										playerReportType = reportDetails[1];
 									ClientLib.Data.MainData.GetInstance().get_Reports().MarkReportsAsRead([reportId], playerReportType, false);
 									break;
 							}
@@ -356,7 +355,7 @@
 					 * @param {String} parameter
 					 * @returns {*}
 					 */
-					getNoficationParameter: function(notification, parameter) {
+					getNoficationParameter: function (notification, parameter) {
 						var params = notification.get_Parameters();
 
 						for (var i = 0; i < params.length; i++) {
@@ -369,10 +368,10 @@
 					}
 				}
 			});
-			
+
 			qx.Class.define('Wavy.CountLabel', {
 				extend: qx.ui.container.Composite,
-				construct: function() {
+				construct: function () {
 					qx.ui.container.Composite.call(this);
 					this.setLayout(new qx.ui.layout.HBox());
 
@@ -393,11 +392,11 @@
 					/**
 					 * @param {Number} baseCount
 					 */
-					setBaseCount: function(baseCount) {
+					setBaseCount: function (baseCount) {
 						var waveCount = this.getNumberOfWaves(baseCount);
 						this.baseCountLabel.setValue(baseCount.toString());
-						this.waveCountLabel.setValue(waveCount.toString()
-							+ ' wave' + (waveCount === 1 ? '' : 's')
+						this.waveCountLabel.setValue(waveCount.toString() +
+							' wave' + (waveCount === 1 ? '' : 's')
 						);
 					},
 
@@ -405,7 +404,7 @@
 					 * @param {Number} baseCount
 					 * @returns {Number}
 					 */
-					getNumberOfWaves: function(baseCount) {
+					getNumberOfWaves: function (baseCount) {
 						return Math.max(1, Math.min(5, Math.floor(baseCount / 10)));
 					}
 				}
@@ -418,16 +417,13 @@
 					if (ClientLib.Data.MainData.GetInstance().get_Server().get_ForgottenAttacksEnabled()) {
 						createWavy();
 						Wavy.getInstance().initialize();
-					}
-					else {
+					} else {
 						console.log('Wavy: Forgotten attacks not enabled. Init cancelled.');
 					}
-				}
-				else {
+				} else {
 					setTimeout(waitForGame, 1000);
 				}
-			}
-			catch (e) {
+			} catch (e) {
 				console.log('Wavy: ', e.toString());
 			}
 		}
@@ -436,7 +432,7 @@
 	};
 
 	var script = document.createElement('script');
-	script.innerHTML = '(' + main.toString() + ')();';
+	script.textContent = '(' + main.toString() + ')();';
 	script.type = 'text/javascript';
 	document.getElementsByTagName('head')[0].appendChild(script);
 })();
