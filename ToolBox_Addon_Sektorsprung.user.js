@@ -6,7 +6,7 @@
 // @include        https://cncapp*.alliances.commandandconquer.com/*/index.aspx*
 // @downloadURL    https://raw.githubusercontent.com/leo7044/CnC_TA/master/ToolBox_Addon_Sektorsprung.user.js
 // @updateURL      https://raw.githubusercontent.com/leo7044/CnC_TA/master/ToolBox_Addon_Sektorsprung.user.js
-// @version        0.1.3.1 Beta
+// @version        0.1.3.2 Beta
 // @grant          none
 // ==/UserScript==
 
@@ -94,7 +94,7 @@
 								ClientLib.Net.CommunicationManager.GetInstance().SendSimpleCommand("RankingGetCount", {
 									view: ClientLib.Data.Ranking.EViewType.Player,
 									rankingType: ClientLib.Data.Ranking.ERankingType.Score
-								}, phe.cnc.Util.createEventDelegate(ClientLib.Net.CommandResult, this, anzahlerneuern), null);
+								}, webfrontend.phe.cnc.Util.createEventDelegate(ClientLib.Net.CommandResult, this, anzahlerneuern), null);
 							} else {
 								spielerfinden(spielernamen);
 							}
@@ -108,7 +108,7 @@
 								rankingType: ClientLib.Data.Ranking.ERankingType.Score,
 								sortColumn: ClientLib.Data.Ranking.ESortColumn.PlayerName,
 								view: ClientLib.Data.Ranking.EViewType.Player
-							}, phe.cnc.Util.createEventDelegate(ClientLib.Net.CommandResult, this, ranglistennamen), null);
+							}, webfrontend.phe.cnc.Util.createEventDelegate(ClientLib.Net.CommandResult, this, ranglistennamen), null);
 						};
 						var ranglistennamen = function(context, data) {
 							for (var k = 0; k < data.p.length; k++) {
@@ -193,7 +193,7 @@
 							{
 								ClientLib.Net.CommunicationManager.GetInstance().SendSimpleCommand("GetPublicPlayerInfoByName", {
 									name: Spieler.getValue()
-								}, phe.cnc.Util.createEventDelegate(ClientLib.Net.CommandResult, this, landepunktbestimmung), null);
+								}, webfrontend.phe.cnc.Util.createEventDelegate(ClientLib.Net.CommandResult, this, landepunktbestimmung), null);
 							}
 						}, this);
 						SektorsprungFenster.add(berechnen);
@@ -393,23 +393,23 @@
 						{
 							createClass();
 
-							//console.log("Creating phe.cnc function wraps");
+							//console.log("Creating webfrontend.phe.cnc function wraps");
 
-							if (typeof phe.cnc.Util.attachNetEvent == 'undefined')
+							if (typeof webfrontend.phe.cnc.Util.attachNetEvent == 'undefined')
 							{
 								ToolBox_Addon_Sektorsprung.getInstance().attachNetEvent = webfrontend.gui.Util.attachNetEvent;
 								ToolBox_Addon_Sektorsprung.getInstance().detachNetEvent = webfrontend.gui.Util.detachNetEvent;
 							}
 							else
 							{
-								ToolBox_Addon_Sektorsprung.getInstance().attachNetEvent = phe.cnc.Util.attachNetEvent;
-								ToolBox_Addon_Sektorsprung.getInstance().detachNetEvent = phe.cnc.Util.detachNetEvent;
+								ToolBox_Addon_Sektorsprung.getInstance().attachNetEvent = webfrontend.phe.cnc.Util.attachNetEvent;
+								ToolBox_Addon_Sektorsprung.getInstance().detachNetEvent = webfrontend.phe.cnc.Util.detachNetEvent;
 							}
 
-							if (typeof phe.cnc.gui.util == 'undefined')
+							if (typeof webfrontend.phe.cnc.gui.util == 'undefined')
 								ToolBox_Addon_Sektorsprung.getInstance().formatNumbersCompact = webfrontend.gui.Util.formatNumbersCompact;
 							else
-								ToolBox_Addon_Sektorsprung.getInstance().formatNumbersCompact = phe.cnc.gui.util.Numbers.formatNumbersCompact;
+								ToolBox_Addon_Sektorsprung.getInstance().formatNumbersCompact = webfrontend.phe.cnc.gui.util.Numbers.formatNumbersCompact;
 
 							ToolBox_Addon_Sektorsprung.getInstance();
 						}
