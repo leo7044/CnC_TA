@@ -6,7 +6,7 @@
 // @include        https://cncapp*.alliances.commandandconquer.com/*/index.aspx*
 // @downloadURL    https://raw.githubusercontent.com/leo7044/CnC_TA/master/ToolBoxMain.user.js
 // @updateURL      https://raw.githubusercontent.com/leo7044/CnC_TA/master/ToolBoxMain.user.js
-// @version        0.1.1 Beta
+// @version        0.1.2 Beta
 // @grant          none
 // ==/UserScript==
 
@@ -104,23 +104,23 @@
                         {
                             createClass();
 
-                            //console.log("Creating phe.cnc function wraps");
+                            //console.log("Creating webfrontend.phe.cnc function wraps");
 
-                            if (typeof phe.cnc.Util.attachNetEvent == 'undefined')
+                            if (typeof webfrontend.phe.cnc.Util.attachNetEvent == 'undefined')
                             {
                                 ToolBoxMain.getInstance().attachNetEvent = webfrontend.gui.Util.attachNetEvent;
                                 ToolBoxMain.getInstance().detachNetEvent = webfrontend.gui.Util.detachNetEvent;
                             }
                             else
                             {
-                                ToolBoxMain.getInstance().attachNetEvent = phe.cnc.Util.attachNetEvent;
-                                ToolBoxMain.getInstance().detachNetEvent = phe.cnc.Util.detachNetEvent;
+                                ToolBoxMain.getInstance().attachNetEvent = webfrontend.phe.cnc.Util.attachNetEvent;
+                                ToolBoxMain.getInstance().detachNetEvent = webfrontend.phe.cnc.Util.detachNetEvent;
                             }
 
-                            if (typeof phe.cnc.gui.util == 'undefined')
+                            if (typeof webfrontend.phe.cnc.gui.util == 'undefined')
                                 ToolBoxMain.getInstance().formatNumbersCompact = webfrontend.gui.Util.formatNumbersCompact;
                             else
-                                ToolBoxMain.getInstance().formatNumbersCompact = phe.cnc.gui.util.Numbers.formatNumbersCompact;
+                                ToolBoxMain.getInstance().formatNumbersCompact = webfrontend.phe.cnc.gui.util.Numbers.formatNumbersCompact;
 
                             ToolBoxMain.getInstance();
                         }
