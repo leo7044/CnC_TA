@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Tiberium Alliances The Movement
-// @version        1.0.8.1
+// @version        1.0.8.2
 // @namespace      https://openuserjs.org/users/petui
 // @license        GPL version 3 or any later version; http://www.gnu.org/copyleft/gpl.html
 // @author         petui
@@ -1528,7 +1528,7 @@
                      * @returns {Boolean}
                      */
                     supports: function (regionObject) {
-                        return regionObject.get_VisObjectType() === ClientLib.Vis.VisObject.EObjectType.RegionNPCBase || regionObject.get_VisObjectType() === ClientLib.Vis.VisObject.EObjectType.RegionRuin || (regionObject.get_VisObjectType() === ClientLib.Vis.VisObject.EObjectType.RegionCityType && regionObject.get_Type() !== ClientLib.Vis.Region.RegionCity.ERegionCityType.Own);
+                        return regionObject.get_VisObjectType() === ClientLib.Vis.VisObject.EObjectType.RegionNPCBase || regionObject.get_VisObjectType() === ClientLib.Vis.VisObject.EObjectType.RegionRuin || (regionObject.get_VisObjectType() === ClientLib.Vis.VisObject.EObjectType.RegionCityType;
                     },
                     /**
                      * @param {ClientLib.Vis.Region.RegionObject} regionObject
