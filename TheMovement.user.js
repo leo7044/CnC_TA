@@ -1528,7 +1528,7 @@
                      * @returns {Boolean}
                      */
                     supports: function (regionObject) {
-                        return regionObject.get_VisObjectType() === ClientLib.Vis.VisObject.EObjectType.RegionNPCBase || regionObject.get_VisObjectType() === ClientLib.Vis.VisObject.EObjectType.RegionRuin || (regionObject.get_VisObjectType() === ClientLib.Vis.VisObject.EObjectType.RegionCityType;
+                        return regionObject.get_VisObjectType() === ClientLib.Vis.VisObject.EObjectType.RegionNPCBase || regionObject.get_VisObjectType() === ClientLib.Vis.VisObject.EObjectType.RegionRuin || (regionObject.get_VisObjectType() === ClientLib.Vis.VisObject.EObjectType.RegionCityType)
                     },
                     /**
                      * @param {ClientLib.Vis.Region.RegionObject} regionObject
