@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Tiberium Alliances Report Stats
-// @version        0.5.6.1
+// @version        0.5.6.2
 // @license        GPL version 3 or any later version; http://www.gnu.org/copyleft/gpl.html
 // @author         petui
 // @contributor    leo7044 (https://github.com/leo7044)
@@ -156,7 +156,6 @@ codes by NetquiK
 
 								ClientLib.Data.Reports.CombatReport.prototype[setDataMethodName] = function (data) {
 									original.call(this, data);
-                                    console.log(data);
 									this[attackerBaseIdMemberName] = data.d.abl;
 								};
 							} else {
@@ -389,10 +388,10 @@ codes by NetquiK
 
 							var server = ClientLib.Data.MainData.GetInstance().get_Server();
 							var combatCostMinimum = server.get_CombatCostMinimum();
-							var combatCostMinimumPvP = server.get_UsesRebalancingI() ? server.get_PvPCombatCostMinimum() : combatCostMinimum;
+							var combatCostMinimumPvP = server.get_PvPCombatCostMinimum();
 							var combatCostPerFieldInside = server.get_CombatCostPerField();
 							var combatCostPerFieldOutside = server.get_CombatCostPerFieldOutsideTerritory();
-
+                            var combatPvPCostPerField = server.get_PvPCombatCostPerField();
 							for (var i = 0; i < this.reportsLoaded.length; i++) {
 								var report = this.reportsLoaded[i];
 
@@ -418,7 +417,7 @@ codes by NetquiK
 								switch (report.get_Type()) {
 									case ClientLib.Data.Reports.EReportType.Combat:
 										var isFriendlyTerritory = report.get_AttackerAllianceName() === report.get_DefenderAllianceName();
-										var cost = Math.floor(combatCostMinimumPvP + (isFriendlyTerritory ? combatCostPerFieldInside : combatCostPerFieldOutside) * distance);
+										var cost = Math.floor(combatCostMinimumPvP + combatPvPCostPerField * distance);
 										minCommandPointCosts += cost;
 										maxCommandPointCosts += cost;
 										break;
