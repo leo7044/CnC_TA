@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name		SubSender
-// @version		2024.03.12
+// @version		2024.03.16
 // @author		leo7044
 // @homepage		https://rapidly-decent-spider.ngrok-free.app/leoGameStats/
 // @downloadURL		https://github.com/leo7044/CnC_TA/raw/master/SubSender.user.js
@@ -37,10 +37,6 @@
 					else if (WorldId == 446 && AllianceId == 110) // WCS 2023, ARES
 					{
 						DataSub = {name: "Flopwnz001", session: InstanceId};
-					}
-					if (WorldId == 449 && AllianceId == 111) // Tib62, GeForce
-					{
-						DataSub = {name: "xXOnkelMXx", session: InstanceId};
 					}
 					if (Object.keys(DataSub).length)
 					{
