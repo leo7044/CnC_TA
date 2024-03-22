@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name		SubSender
-// @version		2024.03.16
+// @version		2024.03.22
 // @author		leo7044
 // @homepage		https://rapidly-decent-spider.ngrok-free.app/leoGameStats/
 // @downloadURL		https://github.com/leo7044/CnC_TA/raw/master/SubSender.user.js
@@ -28,7 +28,7 @@
 					var DataSub = {};
 					if (WorldId == 446 && AllianceId == 116) // WCS 2023, Schaffa
 					{
-						DataSub = {name: "kOeGy", session: InstanceId};
+						DataSub = {name: "leo7044", session: InstanceId};
 					}
 					else if (WorldId == 446 && AllianceId == 100) // WCS 2023, GeForce
 					{
