@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name		SubSender
-// @version		2024.04.15
+// @version		2024.06.13
 // @author		leo7044
 // @homepage		https://rapidly-decent-spider.ngrok-free.app/leoGameStats/
 // @downloadURL		https://github.com/leo7044/CnC_TA/raw/master/SubSender.user.js
@@ -26,17 +26,9 @@
 					var WorldId = ClientLib.Data.MainData.GetInstance().get_Server().get_WorldId();
 					var AllianceId = ClientLib.Data.MainData.GetInstance().get_Alliance().get_Id();
 					var DataSub = {};
-					if (WorldId == 446 && (AllianceId == 116 || AllianceId == 100)) // WCS 2023, Schaffa oder GeForce
+					if (WorldId == 451 && AllianceId == 102) // Tib63, Obdachlose
 					{
-						DataSub = {name: "leo7044", session: InstanceId};
-					}
-					else if (WorldId == 446 && AllianceId == 110) // WCS 2023, ARES
-					{
-						DataSub = {name: "Flopwnz001", session: InstanceId};
-					}
-					if (WorldId == 449 && AllianceId == 111) // Tib62, GeForce
-					{
-						DataSub = {name: "xXOnkelMXx", session: InstanceId};
+						DataSub = {name: "AffenKoenig", session: InstanceId};
 					}
 					if (Object.keys(DataSub).length)
 					{
