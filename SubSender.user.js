@@ -26,7 +26,7 @@
 					var WorldId = ClientLib.Data.MainData.GetInstance().get_Server().get_WorldId();
 					var AllianceId = ClientLib.Data.MainData.GetInstance().get_Alliance().get_Id();
 					var DataSub = {};
-					if (WorldId == 451 && AllianceId == 102) // Tib63, Obdachlose
+					if (WorldId == 455 && AllianceId == 100) // FS25, OoC-GeForce
 					{
 						DataSub = {name: "AffenKoenig", session: InstanceId};
 					}
