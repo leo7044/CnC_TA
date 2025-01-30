@@ -18,15 +18,20 @@
 				var PlayerId = ClientLib.Data.MainData.GetInstance().get_Player().get_Id();
 				if (PlayerId > 0)
 				{
-                    ClientLib.Data.MainData.GetInstance().get_Cities().get_CurrentOwnCity().RepairAll = null;
-                    ClientLib.Data.MainData.GetInstance().get_Cities().get_CurrentOwnCity().RepairAllOffense = null;
-                    if (MaelstromTools)
+                    for (var key in ClientLib.Data.MainData.GetInstance().get_Cities().get_AllCities().d)
                     {
-                        for (var key in MaelstromTools.Cache.getInstance().Cities)
-                        {
-                            MaelstromTools.Cache.getInstance().Cities[key]['Object'].get_CityRepairData().RepairAll = null;
-                        }
+                        ClientLib.Data.MainData.GetInstance().get_Cities().get_AllCities().d[key].RepairAll = null;
+                        ClientLib.Data.MainData.GetInstance().get_Cities().get_AllCities().d[key].RepairAllOffense = null;
                     }
+                    setTimeout(function(){
+                        if (MaelstromTools)
+                        {
+                            for (var key in MaelstromTools.Cache.getInstance().Cities)
+                            {
+                                MaelstromTools.Cache.getInstance().Cities[key]['Object'].get_CityRepairData().RepairAll = null;
+                            }
+                        }
+                    }, 10000);
 				}
 				else
 				{
