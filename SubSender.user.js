@@ -1,8 +1,7 @@
 // ==UserScript==
 // @name		SubSender
-// @version		2024.06.13
+// @version		2025.03.05
 // @author		leo7044
-// @homepage		https://rapidly-decent-spider.ngrok-free.app/leoGameStats/
 // @downloadURL		https://github.com/leo7044/CnC_TA/raw/master/SubSender.user.js
 // @updateURL		https://github.com/leo7044/CnC_TA/raw/master/SubSender.user.js
 // @description		Uvs automatisch raussenden
@@ -26,7 +25,11 @@
 					var WorldId = ClientLib.Data.MainData.GetInstance().get_Server().get_WorldId();
 					var AllianceId = ClientLib.Data.MainData.GetInstance().get_Alliance().get_Id();
 					var DataSub = {};
-					if (WorldId == 455 && AllianceId == 100) // FS25, OoC-GeForce
+					if (WorldId == 460 && AllianceId == 104) // Tib67, LocoUnchained
+					{
+						DataSub = {name: "LocoUnchained", session: InstanceId};
+					}
+					if (WorldId == 460 && AllianceId == 100) // FS26, GeForce
 					{
 						DataSub = {name: "AffenKoenig", session: InstanceId};
 					}
