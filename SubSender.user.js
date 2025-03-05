@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name		SubSender
-// @version		2025.03.05
+// @version		2025.03.05.1
 // @author		leo7044
 // @downloadURL		https://github.com/leo7044/CnC_TA/raw/master/SubSender.user.js
 // @updateURL		https://github.com/leo7044/CnC_TA/raw/master/SubSender.user.js
@@ -29,7 +29,7 @@
 					{
 						DataSub = {name: "LocoUnchained", session: InstanceId};
 					}
-					if (WorldId == 460 && AllianceId == 100) // FS26, GeForce
+					if (WorldId == 458 && AllianceId == 100) // FS26, GeForce
 					{
 						DataSub = {name: "AffenKoenig", session: InstanceId};
 					}
