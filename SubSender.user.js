@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name		SubSender
-// @version		2025.03.05.1
+// @version		2025.12.18
 // @author		leo7044
 // @downloadURL		https://github.com/leo7044/CnC_TA/raw/master/SubSender.user.js
 // @updateURL		https://github.com/leo7044/CnC_TA/raw/master/SubSender.user.js
@@ -25,11 +25,7 @@
 					var WorldId = ClientLib.Data.MainData.GetInstance().get_Server().get_WorldId();
 					var AllianceId = ClientLib.Data.MainData.GetInstance().get_Alliance().get_Id();
 					var DataSub = {};
-					if (WorldId == 460 && AllianceId == 104) // Tib67, LocoUnchained
-					{
-						DataSub = {name: "LocoUnchained", session: InstanceId};
-					}
-					if (WorldId == 458 && AllianceId == 100) // FS26, GeForce
+					if (WorldId == 465 && (AllianceId == 102 || AllianceId == 115)) // WCS 2025, GeForce
 					{
 						DataSub = {name: "AffenKoenig", session: InstanceId};
 					}
@@ -94,3 +90,4 @@
 	}
 	Inject();
 })();
+
