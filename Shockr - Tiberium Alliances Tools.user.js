@@ -5,7 +5,7 @@
 // @match           https://*.alliances.commandandconquer.com/*/index.aspx*
 // @grant           GM_updatingEnabled
 // @grant           unsafeWindow
-// @version         4.5.3.1
+// @version         4.5.3.2
 // @icon            https://shockr.dev/favicon.0012b310.png
 // @versionHash     77260e3
 // ==/UserScript==
@@ -647,7 +647,7 @@ function startSt() {
                     static getObjectsNearCity(city) {
                         const cityX = city.get_PosX();
                         const cityY = city.get_PosY();
-                        const maxAttack = ClientLib.Data.MainData.GetInstance().get_Server().get_MaxAttackDistance() - 0.5;
+                        const maxAttack = ClientLib.Data.MainData.GetInstance().get_Server().get_MaxAttackDistance();
                         const world = ClientLib.Data.MainData.GetInstance().get_World();
                         const output = new Map();
                         for (const point of location_1.LocationIter.xyDistance(cityX, cityY, maxAttack)) {
