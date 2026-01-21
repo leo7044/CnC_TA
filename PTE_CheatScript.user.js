@@ -47,7 +47,7 @@
                         // RepTime (Off)
                         if (cheat_repairoff && !bases[key].get_IsGhostMode() && bases[key].GetOffenseConditionInPercent() < 100 && bases[key].get_LvlOffense() > 0)
                         {
-                            qx.core.Init.getApplication().getChat().getChatWidget().send("/cheat repairoff " + key);
+                            //qx.core.Init.getApplication().getChat().getChatWidget().send("/cheat repairoff " + key);
                         }
                         else if (!cheat_repairoff && !cheat_repairallpte && bases[key].get_CityRepairData().CanRepairAll(ClientLib.Vis.Mode.ArmySetup))
                         {
