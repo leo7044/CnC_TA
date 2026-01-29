@@ -5,7 +5,7 @@
 // @match           https://*.alliances.commandandconquer.com/*/index.aspx*
 // @grant           GM_updatingEnabled
 // @grant           unsafeWindow
-// @version         4.5.3.2
+// @version         4.5.3.3
 // @icon            https://shockr.dev/favicon.0012b310.png
 // @versionHash     77260e3
 // ==/UserScript==
@@ -182,7 +182,7 @@ function startSt() {
                             if (!util_1.PatchWorldObjectNPCCamp.isPatched(f.object)) {
                                 return false;
                             }
-                            if (f.object.$CampType === 0 /* Destroyed */ ) {
+                            if (f.object.$CampType === 0 /* Destroyed */ || f.object.$CampType === 2 /* Camp */ ) {
                                 return false;
                             }
                             // Ignore low level camps/outposts
