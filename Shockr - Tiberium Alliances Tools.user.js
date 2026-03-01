@@ -5,7 +5,7 @@
 // @match           https://*.alliances.commandandconquer.com/*/index.aspx*
 // @grant           GM_updatingEnabled
 // @grant           unsafeWindow
-// @version         4.5.3.4
+// @version         4.5.3.5
 // @icon            https://shockr.dev/favicon.0012b310.png
 // @versionHash     77260e3
 // ==/UserScript==
@@ -175,8 +175,8 @@ function startSt() {
                         if (mainBase == null) {
                             return;
                         }
-                        const offLevel = mainBase.get_LvlOffense();
-                        const minBaseHighlight = 40;
+                        const offLevel = parseInt(mainBase.get_LvlOffense());
+                        const minBaseHighlight = offLevel;
                         const nearByCamps = Array.from(util_1.CityUtil.getObjectsNearCity(mainBase).values()).filter((f) => {
                             // All outposts are camps
                             if (!util_1.PatchWorldObjectNPCCamp.isPatched(f.object)) {
