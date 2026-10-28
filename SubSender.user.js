@@ -25,7 +25,7 @@
 					var WorldId = ClientLib.Data.MainData.GetInstance().get_Server().get_WorldId();
 					var AllianceId = ClientLib.Data.MainData.GetInstance().get_Alliance().get_Id();
 					var DataSub = {};
-					if (WorldId == 477 && AllianceId == 100)) // FS34, all4one
+					if (WorldId == 477 && AllianceId == 100) // FS34, all4one
 					{
 						DataSub = {name: "AffenKoenig", session: InstanceId};
 					}
